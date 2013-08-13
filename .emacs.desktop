@@ -2,7 +2,7 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Sun Aug 11 12:02:29 2013
+;; Created Mon Aug 12 17:03:59 2013
 ;; Desktop file format version 206
 ;; Emacs version 24.3.1
 
@@ -10,19 +10,63 @@
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
-(setq search-ring '("ws-tri" "zenburn" "ido" "markdown" "twee-" "\\n" "evil" "evilh" "global" "nerd-comm" "zenburn" "flycheck" "cython" "I " "slime" "flymake"))
-(setq regexp-search-ring '("white" "12" "light" "source" "zenburn" "for" "mask" "remove" "reove" "remov" "mask" "print" "layers" "print" "zmin" "print"))
+(setq search-ring '("jedi" "ws-tri" "zenburn" "ido" "markdown" "twee-" "\\n" "evil" "evilh" "global" "nerd-comm" "zenburn" "flycheck" "cython" "I " "slime"))
+(setq regexp-search-ring '("pixels" "split" "print" "split" "import_" "print" "in len" "in lenj" "flatte" "cutoff" "os.remove" "svg_" "nlayers" "draw_flat" "esc" "auto-complete-mode"))
 (setq register-alist '((13) (27) (117) (24) (34 . "            ftype = db.hget(\"jids:{}\".format(jid), \"ftype\")\n") (35 . "/home/john/MSM/waitress.py") (37) (42 . "            ftype = db.hget(\"jids:{}\".format(jid), \"ftype\")\n") (43 . "            ftype = db.hget(\"jids:{}\".format(jid), \"ftype\")\n") (45 . "\"stl\"") (46 . "    ") (47 . "evil") (48 . "            ftype = db.hget(\"jids:{}\".format(jid), \"ftype\")\n") (49 . "            if ftype == 2: # OpenSCAD\n                setstatus(jid, \"Converting to STL...\")\n                scad_to_stl(jid)\n") (50 . "import subprocess\n") (51 . "    \n") (52 . "i\n") (53 . "\n") (54 . "\"stl\"") (55 . "\n") (56 . "      <p>Filetype: <input type=text name=mac>\n") (57 . "Printer") (58 . "registers") (62) (134217841)))
-(setq file-name-history '("/home/john/.config/fontconfig/fonts.conf" "/home/john/.fonts.conf" "/home/john/.emacs" "/home/john/pcl/ansi_4.cl" "/home/john/pyne/pyne/endf.pyx" "/home/john/MSM/msm/motrace.py" "/home/john/MSM/msm/tests/test_triangulate.py" "/home/john/MSM/msm/tests/test_motrace.py" "/home/john/MSM/msm/imgtostl.py" "/home/john/MSM/msm/motrace.py" "/home/john/MSM/msm/triangulate.py" "/home/john/MSM/msm/tests/test_triangulate.py" "/home/john/MSM/msm/debug.py" "/home/john/pcl/ansi_3.cl" "/home/john/.local/share/data/Cockatrice/Cockatrice/cards.xml" "/home/john/.emacs" "/home/john/MSM/brianhjaffe.py" "/home/john/.config/awesome/rc.lua" "/home/john/MSM/moses.py" "/home/john/MSM/msm_printcore.py" "/home/john/MSM/moses.py" "/home/john/MSM/printrbot_jr_config.ini" "/home/john/MSM/msm/tests/test_triangulate.py" "/home/john/MSM/msm/tests/test_motrace.py" "/home/john/MSM/msm/motrace.py" "/home/john/MSM/hotmesh.py" "/home/john/MSM/msm/debug.py" "~/normalization_tests" "/home/john/MSM/moses.py" "/home/john/.emacs"))
+(setq file-name-history '("/home/john/MSM/msm/tests/test_motrace.py" "/home/john/hello.c" "/home/john/msm_list.c" "/home/john/MSM/msm/motrace.py" "/home/john/MSM/msm/tests/test_triangulate.py" "~/.emacs" "/home/john/MSM/msm/triangulate.py" "/home/john/.emacs" "~/.emacs" "/home/john/test.tex" "/home/john/MSM/msm/triangulate.py" "/home/john/.config/fontconfig/fonts.conf" "/home/john/.fonts.conf" "/home/john/.emacs" "/home/john/pcl/ansi_4.cl" "/home/john/pyne/pyne/endf.pyx" "/home/john/MSM/msm/motrace.py" "/home/john/MSM/msm/tests/test_triangulate.py" "/home/john/MSM/msm/tests/test_motrace.py" "/home/john/MSM/msm/imgtostl.py" "/home/john/MSM/msm/motrace.py" "/home/john/MSM/msm/triangulate.py" "/home/john/MSM/msm/tests/test_triangulate.py" "/home/john/MSM/msm/debug.py" "/home/john/pcl/ansi_3.cl" "/home/john/.local/share/data/Cockatrice/Cockatrice/cards.xml" "/home/john/.emacs" "/home/john/MSM/brianhjaffe.py" "/home/john/.config/awesome/rc.lua" "/home/john/MSM/moses.py"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/john/MSM/msm/triangulate.py"
+  "triangulate.py"
+  'python-mode
+  '(undo-tree-mode auto-complete-mode global-whitespace-mode ws-trim-mode flycheck-mode)
+  7881
+  '(7031 nil)
+  nil
+  nil
+  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/john/MSM/msm/tests/test_triangulate.py"
+  "test_triangulate.py"
+  'python-mode
+  '(undo-tree-mode auto-complete-mode global-whitespace-mode ws-trim-mode flycheck-mode)
+  810
+  '(810 nil)
+  nil
+  nil
+  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/john/MSM/msm/tests/test_motrace.py"
+  "test_motrace.py"
+  'python-mode
+  '(undo-tree-mode auto-complete-mode global-whitespace-mode ws-trim-mode flycheck-mode)
+  2274
+  '(144 nil)
+  nil
+  nil
+  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/john/MSM/msm/motrace.py"
+  "motrace.py"
+  'python-mode
+  '(undo-tree-mode auto-complete-mode global-whitespace-mode ws-trim-mode flycheck-mode)
+  912
+  '(891 nil)
+  nil
+  nil
+  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
 (desktop-create-buffer 206
   "/home/john/.emacs"
   ".emacs"
   'emacs-lisp-mode
   '(undo-tree-mode auto-complete-mode global-whitespace-mode ws-trim-mode flycheck-mode)
-  4040
-  '(1543 nil)
+  1056
+  '(885 nil)
   nil
   nil
   '((buffer-file-coding-system . undecided-unix)))
@@ -45,17 +89,6 @@
   '(undo-tree-mode auto-complete-mode global-whitespace-mode ws-trim-mode flyspell-mode)
   234
   '(322 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/john/pcl/ansi_4.cl"
-  "ansi_4.cl"
-  'lisp-mode
-  '(undo-tree-mode auto-complete-mode global-whitespace-mode ws-trim-mode slime-mode eldoc-mode)
-  1
-  '(nil nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-unix)))

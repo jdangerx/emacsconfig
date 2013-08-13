@@ -187,7 +187,7 @@
 	       (1 6 8)))
 	     "Weblog maintenance via XML-RPC APIs [bzr]" single])
  (web-mode .
-	   [(20130811 932)
+	   [(20130811 1912)
 	    nil "major mode for editing html templates [github]" single])
  (web .
       [(20130429 1926)
@@ -1662,7 +1662,7 @@
 		     (9)))
 		   "decompilation extension for nrepl.el [github]" single])
  (nrepl .
-	[(20130808 1909)
+	[(20130811 1343)
 	 ((clojure-mode
 	   (2 0 0))
 	  (cl-lib
@@ -2729,7 +2729,7 @@
 		    [(20120821 1835)
 		     nil "Mode for the dot-language used by graphviz (att). [github]" single])
  (graphene .
-	   [(20130810 1356)
+	   [(20130811 1403)
 	    ((auto-complete
 	      (20130330))
 	     (smartparens
@@ -2781,7 +2781,7 @@
 	       [(20130530 1410)
 		nil "Automatic resizing of Emacs windows to the golden ratio [github]" single])
  (god-mode .
-	   [(20130811 1214)
+	   [(20130811 1719)
 	    nil "God-like command entering minor mode [github]" single])
  (go-snippets .
 	      [(20130602 2225)
@@ -3291,7 +3291,7 @@
 		 (0)))
 	       "let there be <leader> [github]" single])
  (evil .
-       [(20130804 1513)
+       [(20130811 1751)
 	((undo-tree
 	  (0 6 3)))
 	"Extensible Vi layer for Emacs. [git]" tar])

@@ -8,14 +8,27 @@
 ;; general purpose shortcuts
 (global-set-key (kbd "C-x r") 'revert-buffer)
 
+;; get rid of stuff that's not important
+(setq inhibit-startup-screen t)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(show-paren-mode t)
+(tool-bar-mode -1)
+
+;; add numbers to tell me where I am
+(column-number-mode t)
+(global-linum-mode t)
+(require 'linum-relative)
+
+;; don't babysit me
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 ;; frame-oriented
 (setq default-frame-alist
       '((font . "Source Code Pro 14") (scroll-bar-mode . nil)))
 (setq pop-up-frames t)
 (global-set-key (kbd "C-x 3") 'new-frame)
-
-;; unique buffer name
-(require 'uniquify)
 
 ;; evil!
 (require 'evil)
@@ -23,9 +36,6 @@
 (setq evil-default-cursor t)
 (evil-mode 1)
 (setq-default truncate-lines 1)
-
-;; linum-relative
-(require 'linum-relative)
 
 ;;; quits that make sense
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
@@ -37,11 +47,11 @@
 (define-key minibuffer-local-must-match-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'keyboard-quit)
 
-; evil-surround
+;; evil-surround
 (require 'surround)
 (global-surround-mode 1)
 
-;; better comments
+;;; better comments
 (defun comment-or-uncomment-region-or-line ()
     "Comments or uncomments the region or the current line if there's no active region."
     (interactive)
@@ -53,15 +63,20 @@
         (next-logical-line)))
 (global-set-key "\M-;" 'comment-or-uncomment-region-or-line)
 
+
+;; unique buffer name
+(require 'uniquify)
+
 ;; Setup Auto-complete
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
-(global-set-key (kbd "<backtab>") 'dabbrev-expand)
-(add-hook 'after-init-hook 'abbrev-mode)
 
 ;; auto-indent
 (global-set-key (kbd "RET") 'newline-and-indent)
+
+;; tramp
+(require 'tramp)
 
 ;; Flycheck
 (require 'flycheck-autoloads)
@@ -83,7 +98,7 @@
 (add-hook 'js-mode-hook
           (function (lambda ()
                       (setq evil-shift-width js-indent-level))))
-
+(add-hook 'js-mode-hook 'rainbow-mode)
 ;; Markdown mode
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
@@ -107,9 +122,7 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ;; C mode
 (setq c-default-style "linux"
@@ -127,25 +140,18 @@
 (setq deft-use-filename-as-title t)
 (evil-set-initial-state 'deft-mode 'emacs)
 (global-set-key [f5] 'deft)
+(setq deft-directory "/home/john/Dropbox/deft/")
+(setq deft-extension "md")
+(setq deft-text-mode (quote markdown-mode))
 
 ;; Spaces instead of tabs
 (setq-default indent-tabs-mode nil)
-
-;; save session
-(require 'desktop)
-  (desktop-save-mode 1)
-  (defun my-desktop-save ()
-    (interactive)
-    ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
-    (if (eq (desktop-owner) (emacs-pid))
-        (desktop-save desktop-dirname)))
-  (add-hook 'auto-save-hook 'my-desktop-save)
 
 ;; ido-mode
 (require 'ido)
 (ido-mode t)
 
-;; ;; Long-line highlighting
+;; Long-line highlighting
 (require 'whitespace)
 (setq whitespace-style '(face empty tabs lines-tail trailing))
 (global-whitespace-mode t)
@@ -159,8 +165,6 @@
 ;; prompts
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;=============================================================================
-
 ;; Cosmetics
 ;; themes
 (add-hook 'after-init-hook (lambda () (load-theme 'solarized-light)))
@@ -169,29 +173,16 @@
 ;; Nyan-mode
 (require 'nyan-mode)
 (nyan-mode t)
-(nyan-start-animation)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(background-mode light)
- '(column-number-mode t)
  '(custom-safe-themes
    (quote
     ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
- '(deft-directory "/home/john/Dropbox/deft/")
- '(deft-extension "md")
- '(deft-text-mode (quote markdown-mode))
  '(flycheck-display-errors-function (quote flycheck-display-error-messages))
- '(global-linum-mode t)
- '(inhibit-startup-screen t)
- '(menu-bar-mode nil)
- '(rainbow-mode t)
- '(scroll-bar-mode nil)
- '(show-paren-mode t)
- '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(whitespace-line-column 99))
 (custom-set-faces
@@ -201,5 +192,3 @@
  ;; If there is more than one, they won't work right.
  '(flycheck-warning ((t (:underline (:color "dim gray" :style wave)))))
  '(which-func ((t (:foreground "gainsboro"))) t))
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)

@@ -11,7 +11,6 @@
 ;; get rid of stuff that's not important
 (setq inhibit-startup-screen t)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
 (show-paren-mode t)
 (tool-bar-mode -1)
 
@@ -26,7 +25,9 @@
 
 ;; frame-oriented
 (setq default-frame-alist
-      '((font . "Source Code Pro 14") (scroll-bar-mode . nil)))
+      '((font . "Source Code Pro 14") (scroll-bar-mode . -1)))
+(setq initial-frame-alist default-frame-alist)
+      ;; '((font . "Source Code Pro 14")))
 (setq pop-up-frames t)
 (global-set-key (kbd "C-x 3") 'new-frame)
 
@@ -46,6 +47,10 @@
 (define-key minibuffer-local-completion-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'keyboard-quit)
+
+;; evil-matchit
+(require 'evil-matchit)
+(global-evil-matchit-mode 1)
 
 ;; evil-surround
 (require 'surround)
@@ -79,15 +84,22 @@
 (require 'tramp)
 
 ;; Flycheck
-(require 'flycheck-autoloads)
 (add-hook 'python-mode-hook 'flycheck-mode)
 (add-hook 'js-mode-hook 'flycheck-mode)
 (add-hook 'haskell-mode-hook 'flycheck-mode)
+
+;; org mode
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
 
 ;; Python mode
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . python-mode))
 (add-hook 'python-mode-hook (function (lambda () (setq python-indent-offset 4))))
 (add-hook 'python-mode-hook (function (lambda () (setq evil-shift-width python-indent-offset))))
+
+;; emacs ipython notebook
 (require 'ein)
 
 ;; css mode
@@ -99,30 +111,21 @@
           (function (lambda ()
                       (setq evil-shift-width js-indent-level))))
 (add-hook 'js-mode-hook 'rainbow-mode)
+
 ;; Markdown mode
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-hook 'markdown-mode-hook
           (function (lambda ()
-                      (setq evil-shift-width js-indent-level))))
-
-;; SLIME
-;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
-;; (setq inferior-lisp-program "ccl")
-
-;; Lisp mode
-;; (add-hook 'lisp-mode-hook 'slime-mode)
-;; (add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
+                      (setq evil-shift-width 2))))
 
 ;; haskell-mode
 (require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;; C mode
 (setq c-default-style "linux"
@@ -181,7 +184,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
+    ("31a01668c84d03862a970c471edbd377b2430868eccf5e8a9aec6831f1a0908d" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(flycheck-display-errors-function (quote flycheck-display-error-messages))
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(whitespace-line-column 99))
@@ -190,5 +193,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flycheck-warning ((t (:underline (:color "dim gray" :style wave)))))
  '(which-func ((t (:foreground "gainsboro"))) t))

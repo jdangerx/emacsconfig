@@ -29,7 +29,7 @@
 (setq initial-frame-alist default-frame-alist)
       ;; '((font . "Source Code Pro 14")))
 (setq pop-up-frames t)
-(global-set-key (kbd "C-x 3") 'new-frame)
+(global-set-key (kbd "C-x 3") 'make-frame)
 
 ;; evil!
 (require 'evil)
@@ -92,7 +92,13 @@
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
+(add-hook 'org-mode-hook 'org-indent-mode)
+(add-hook 'org-mode-hook 'visual-line-mode)
 (setq org-log-done t)
+
+;; 6502 assembly
+(require '6502-mode)
+;; (add-to-list 'auto-mode-alist '("\\.asm" . 6502-mode))
 
 ;; Python mode
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . python-mode))
@@ -122,7 +128,9 @@
 
 ;; haskell-mode
 (require 'haskell-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
@@ -173,6 +181,17 @@
 (add-hook 'after-init-hook (lambda () (load-theme 'solarized-light)))
 ;; (add-hook 'after-init-hook (lambda () (load-theme 'zenburn)))
 
+;; pretty symbols??
+(global-prettify-symbols-mode 1)
+
+(setq haskell-symbols '(
+  ("->" ?→) ("=>" ?⇒) ("<-" ?← )
+  (">=" ?≥) ("<=" . ?≤) ("/=" ?≠)))
+
+(add-hook 'haskell-mode-hook (lambda ()
+  (setq prettify-symbols-alist haskell-symbols)))
+
+
 ;; Nyan-mode
 (require 'nyan-mode)
 (nyan-mode t)
@@ -186,6 +205,11 @@
    (quote
     ("31a01668c84d03862a970c471edbd377b2430868eccf5e8a9aec6831f1a0908d" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(flycheck-display-errors-function (quote flycheck-display-error-messages))
+ '(haskell-indentation-show-indentations nil)
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-program-name "ghci")
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(whitespace-line-column 99))
 (custom-set-faces
